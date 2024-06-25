@@ -15,33 +15,30 @@ const Cart = () => {
   return (
     <>
       <div className="pt-4 flex flex-wrap justify-center gap-4">
-        {restaurants && restaurants.map((restaurants) => {
-          return (
-            <div
-              key={restaurants.id}
-              className="card w-96 bg-base-100 shadow-xl bg-indigo-100 text-black"
-            >
+        {restaurants &&
+          restaurants.map((restaurants) => {
+            return (
+              <div
+                key={restaurants.id}
+                className="card w-96 shadow-xl bg-indigo-100 text-black"
+              >
+                <figure>
+                  <img src={restaurants.img} alt={restaurants.name} />
+                </figure>
 
-              <figure>
-                <img src={restaurants.img} alt={restaurants.name} />
-              </figure>
-
-              <div className="card-body">
-                <h2 className="card-title">{restaurants.name}</h2>
-                <p>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Sapiente.
-                </p>
-                <div className="card-actions justify-end">
-                  <button className="btn btn-primary">สั่งซื้อ</button>
+                <div className="card-body">
+                  <h2 className="card-title">{restaurants.name}</h2>
+                  <p>
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Sapiente.
+                  </p>
+                  <div className="card-actions justify-end">
+                    <button className="btn btn-primary">สั่งซื้อ</button>
+                  </div>
                 </div>
               </div>
-              
-            </div>
-          );
-        }
-          
-        )}
+            );
+          })}
       </div>
     </>
   );
