@@ -15,7 +15,7 @@ const Search = ({ restaurants, setFilteredRestaurants }) => {
       return;
     }
 
-    //
+    ////
     const result = restaurants.filter((restaurant) => {
       return (
         restaurant.title.toLowerCase().includes(keyword.toLocaleLowerCase()) ||
