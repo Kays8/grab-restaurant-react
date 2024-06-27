@@ -1,6 +1,6 @@
 import Header from "./components/Header";
 import Search from "./components/Search";
-import Cart from "./components/Cart";
+import Restaurant from "./components/Restaurants";
 import "./App.css";
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
     <div>
       <Header />
       <Search />
-      <Cart />
+      <Restaurant />
     </div>
   );
 }
