@@ -1,11 +1,39 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const Search = () => {
+const Search = ({ restaurants, setFilteredRestaurants }) => {
+  //สร้าง useState เป็นค่าว่าง
+  const [keyword, setKeyword] = useState("");
+
+  //สร้างช่องเพื่อค้นหา keyword
+  const handleChange = async (e) => {
+    setKeyword(e.target.value);
+
+    //เช็คว่า ถ้าช่อง Search เป็นค่าว่างให้แสดงหน้ารวมของ restaurants
+    if (e.target.value === "") {
+      setFilteredRestaurants(restaurants);
+      return;
+    }
+
+    //
+    const result = restaurants.filter((restaurant) => {
+      return (
+        restaurant.title.toLowerCase().includes(keyword.toLocaleLowerCase()) ||
+        restaurant.type.toLocaleLowerCase().includes(keyword.toLowerCase())
+      );
+    });
+    setFilteredRestaurants(result);
+  };
   return (
     <div>
-      <label className="input input-bordered flex items-center gap-2 bg-white bg-slate-200	">
-        <input type="text" className="grow" placeholder="Search" />
+      <label className="input input-bordered flex items-center gap-2 bg-white bg-slate-200">
+        <input
+          type="text"
+          className="grow"
+          placeholder="Search"
+          value={keyword}
+          onChange={handleChange}
+        />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 16 16"
