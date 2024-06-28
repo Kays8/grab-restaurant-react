@@ -25,8 +25,8 @@ const Search = ({ restaurants, setFilteredRestaurants }) => {
     setFilteredRestaurants(result);
   };
   return (
-    <div>
-      <label className="input input-bordered flex items-center gap-2 bg-white bg-slate-200">
+    <div className="card items-center">
+      <label className="input input-bordered flex gap-2 bg-white bg-slate-200 p-2 w-96">
         <input
           type="text"
           className="grow"
@@ -36,9 +36,9 @@ const Search = ({ restaurants, setFilteredRestaurants }) => {
         />
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 16 16"
+          viewBox="0 0 16 12"
           fill="currentColor"
-          className="w-4 h-4 opacity-70"
+          className="w-5 h-5 opacity-70 "
         >
           <path
             fillRule="evenodd"
