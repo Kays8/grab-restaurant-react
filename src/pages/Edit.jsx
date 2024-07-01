@@ -11,14 +11,36 @@ const Edit = () => {
   });
 
   useEffect( ()=> {
-    fetch("http://localhost:3000/restaurants"+id)
-  })
+    fetch("http://localhost:3000/restaurants/"+id)
+    .then((res) => {
+      return res.json();
+    })
+    .then((response)=> {
+      setRestaurants(response);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    })
+  } ,[id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setRestaurants({ ...restaurants, [name]: value });
   };
 
+  const handSubmit = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/restaurants/" + id, {
+        method: "PUT",
+        body: JSON.stringify(restaurants),
+      });
+      if (response.ok) {
+        alert("GG JA");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
 
   return (
@@ -27,32 +49,28 @@ const Edit = () => {
         <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-96">
           {/* Menu Type */}
           <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="menuType"
-            >
+            <label className="block text-gray-700 text-sm font-bold mb-2">
               ชื่อเมนู:
             </label>
             <input
               className="input input-bordered w-full"
               type="text"
               placeholder="Name"
+              id="title"
               name="title"
               value={restaurants.title}
               onChange={handleChange}
             />
           </div>
           <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="menuType"
-            >
+            <label className="block text-gray-700 text-sm font-bold mb-2">
               ประเภทเมนู:
             </label>
             <input
               className="input input-bordered w-full"
               type="text"
               placeholder="Type"
+              id="type"
               name="type"
               value={restaurants.type}
               onChange={handleChange}
@@ -61,16 +79,14 @@ const Edit = () => {
 
           {/* Image Upload */}
           <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="menuType"
-            >
+            <label className="block text-gray-700 text-sm font-bold mb-2">
               IMG:
             </label>
             <input
               className="input input-bordered w-full"
               type="text"
               placeholder="imageUrl"
+              id="img"
               name="img"
               value={restaurants.img}
               onChange={handleChange}
