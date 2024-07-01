@@ -1,6 +1,6 @@
 import React from "react";
 
-const Card = ({ img, title, type }) => {
+const Card = ({id, title, type, img }) => {
   return (
     <div className="card items-center pt-2">
       <div className="card w-72 h-96 shadow-xl bg-gray-50 text-black ">
@@ -11,7 +11,9 @@ const Card = ({ img, title, type }) => {
           <h2 className="card-title">{title}</h2>
           <p>{type}</p>
           <div className="card-actions justify-end">
-            <button className="btn btn-primary">Order Now</button>
+            <a href= {`/Edit/${id}`} className="btn btn-primary">
+              EDIT
+            </a>
           </div>
         </div>
       </div>

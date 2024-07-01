@@ -3,7 +3,6 @@ import Search from "../components/Search";
 import Restaurants from "../components/Restaurants";
 import { useEffect, useState } from "react";
 import "../index.css";
-import Navbar from "../components/Navbar";
 
 function Home() {
   const [restaurants, setRestaurants] = useState([]);
@@ -26,7 +25,7 @@ function Home() {
 
   return (
     <div className="bg-gray-50">
-      <Navbar />
+      
       <Header />
       <Search
         restaurants={restaurants}
