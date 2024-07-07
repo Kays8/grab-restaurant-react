@@ -1,22 +1,44 @@
 import React from "react";
+import Swal from "sweetalert2";
 
-const Card = ({id, title, type, img }) => {
-  //ใส่ handleDelete 
-  const handeDelete = async (id) =>{
-     try {
-       const response = await fetch("http://localhost:3000/restaurants/" + id, {
-         method: "DELETE"
-       });
-       if (response.ok) {
-         alert("DELETE JA");
-         window.location.reload();
-       }
-     } catch (err) {
-       console.log(err);
-     }
-  }
-
-
+const Card = ({ id, title, type, img }) => {
+  //ใส่ handleDelete
+  const handleDelete = async (id) => {
+    Swal.fire({
+      title: "ลบรายการนี้ใช่หรือไม่?",
+      text: "Good Luck for Example in the future!!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const response = await fetch(
+            "http://localhost:3000/restaurants/" + id,
+            {
+              method: "DELETE",
+            }
+          );
+          if (response.ok) {
+            // SweetAlert สำหรับแจ้งว่าการลบสำเร็จ
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+              showConfirmButton: false,
+              timer: 1500, // แสดงผลเป็นเวลา 1.5 วินาที
+            }).then(() => {
+              window.location.reload();
+            });
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    });
+  };
 
   return (
     <div className="card items-center pt-2">
@@ -28,7 +50,7 @@ const Card = ({id, title, type, img }) => {
           <h2 className="card-title">{title}</h2>
           <p>{type}</p>
           <div className="card-actions justify-end">
-            <button className="btn  btn-error" onClick={()=>handeDelete(id)}>
+            <button className="btn  btn-error" onClick={() => handleDelete(id)}>
               Delete
             </button>
             <a href={`/Edit/${id}`} className="btn btn-info">
