@@ -24,6 +24,7 @@ const Search = ({ restaurants, setFilteredRestaurants }) => {
     });
     setFilteredRestaurants(result);
   };
+
   return (
     <div className="card items-center">
       <label className="input input-bordered flex gap-2 bg-white bg-slate-200 p-2 w-96">
