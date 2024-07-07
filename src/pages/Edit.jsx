@@ -3,25 +3,25 @@ import React from "react";
 import { useParams } from "react-router-dom";
 
 const Edit = () => {
-  const {id} = useParams();
+  const { id } = useParams();
   const [restaurants, setRestaurants] = useState({
     title: "",
     type: "",
     img: "",
   });
 
-  useEffect( ()=> {
-    fetch("http://localhost:3000/restaurants/"+id)
-    .then((res) => {
-      return res.json();
-    })
-    .then((response)=> {
-      setRestaurants(response);
-    })
-    .catch((err) => {
-      console.log(err.message);
-    })
-  } ,[id]);
+  useEffect(() => {
+    fetch("http://localhost:3000/restaurants/" + id)
+      .then((res) => {
+        return res.json();
+      })
+      .then((response) => {
+        setRestaurants(response);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, [id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -41,7 +41,6 @@ const Edit = () => {
       console.log(err);
     }
   };
-
 
   return (
     <div>
