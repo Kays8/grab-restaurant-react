@@ -1,11 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import LoginButton from "./LoginButton";
 import RegisterButton from "./RegisterButton";
 import UserProfile from "./UserProfile";
+import { useAuthContext } from "../context/AuthContext";
 
 const Navbar = () => {
-  const user = null;
+  const { user } = useAuthContext();
   return (
     <div>
       <div className="navbar bg-base-100 px-16 p-4 bg-white drop-shadow-lg">

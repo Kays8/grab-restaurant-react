@@ -115,7 +115,7 @@ const Register = () => {
             Register
           </button>
           <button className="btn btn-ghost" onClick={handleCancel}>
-            Deny
+            Cancel
           </button>
         </div>
       </div>
