@@ -1,12 +1,10 @@
 import api from "./api";
-import TokenService from "./token.service";
 
-const API_URL = "/api/v1/auth";
+const API_URL = import.meta.env.VITE_AUTH_API;
 
 const register = async (username, email, password) => {
   return await api.post(API_URL + "/signup", { username, email, password });
 };
-
 
 const login = async (username, password) => {
   const response = await api.post(API_URL + "/signin", { username, password });
@@ -19,7 +17,6 @@ const login = async (username, password) => {
   }
   return response;
 };
-
 
 const AuthService = {
   register,

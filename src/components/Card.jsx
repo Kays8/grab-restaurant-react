@@ -1,7 +1,7 @@
 import React from "react";
 import Swal from "sweetalert2";
 
-const Card = ({ id, title, type, img }) => {
+const Card = ({ id, name, type, imageUrl }) => {
   //ใส่ handleDelete
   const handleDelete = async (id) => {
     Swal.fire({
@@ -44,10 +44,10 @@ const Card = ({ id, title, type, img }) => {
     <div className="card items-center pt-2">
       <div className="card w-72 h-96 shadow-xl bg-gray-50 text-black ">
         <figure>
-          <img src={img} alt={title} />
+          <img src={imageUrl} alt={name} />
         </figure>
         <div className="card-body">
-          <h2 className="card-title">{title}</h2>
+          <h2 className="card-title">{name}</h2>
           <p>{type}</p>
           <div className="card-actions justify-end">
             <button className="btn  btn-error" onClick={() => handleDelete(id)}>

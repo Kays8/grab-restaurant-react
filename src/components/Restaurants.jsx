@@ -8,9 +8,9 @@ const Restaurants = ({ restaurants }) => {
           <Card
             key={restaurants.id}
             id={restaurants.id}
-            img={restaurants.img}
-            title={restaurants.title}
+            name={restaurants.name}
             type={restaurants.type}
+            imageUrl={restaurants.imageUrl}
           />
         ))}
     </div>
