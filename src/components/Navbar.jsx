@@ -3,6 +3,8 @@ import LoginButton from "./LoginButton";
 import RegisterButton from "./RegisterButton";
 import UserProfile from "./UserProfile";
 import { useAuthContext } from "../context/AuthContext";
+import {HomeIcon, PlusIcon, FoodIcon} from './Icon';
+
 
 const Navbar = () => {
   // ดึงข้อมูล user จาก AuthContext
@@ -10,32 +12,38 @@ const Navbar = () => {
 
   return (
     <div>
-      <div className="navbar bg-base-100 px-16 p-4 bg-white drop-shadow-lg">
+      <div className="navbar bg-base-100 px-16 p-4 bg-[#f8f5f5] drop-shadow-lg">
         <div className="navbar-start">
           <a href="/">
-            <img
-              className="w-40"
-              src="https://cloud.shopback.com/c_fit,h_750,w_750/store-service-th/assets/11076/9838b3f0-c024-11ea-bf98-e1c7c502cca8.png"
-              alt="Logo"
-            />
+          <div className="text-black ">
+          <FoodIcon className="text-4xl" />
+          </div>
+            
           </a>
         </div>
 
         <div className="mr-10">
-          <a href="/Add">ADD MENU</a>
-        </div>
-        <div>
-          <a href="/">MAIN PAGE</a>
+          <a href="/" className="flex items-center space-x-1 text-black">
+           <HomeIcon/>
+            <span>Home</span>
+          </a>
         </div>
 
-        <div className="navbar-end flex items-center space-x-4">
+        <div >
+          <a href="/Add" className="flex items-center space-x-1 text-black">
+            <PlusIcon/>
+            <span>Add</span>
+          </a>
+        </div>
+        
+
+        <div className="navbar-end flex items-center space-x-4 text-black">
           {user && (
             <div>
               Welcome,{" "}
-              <span className="font-medium">
+              <span className="font-medium border-zinc-800 ">
                 {user.username}
-                <br />
-                <div className="inline-flex space-x-2 ml-2">
+                <div className="inline-flex space-x-2 ml-2 border-zinc-800">
                   {user.roles.map((role, index) => (
                     <span
                       key={index}
@@ -50,7 +58,10 @@ const Navbar = () => {
           )}
 
           {user ? (
-            <UserProfile />
+            <div className="text-black">
+ <UserProfile />
+            </div>
+           
           ) : (
             <div className="space-x-2">
               <LoginButton />
@@ -58,6 +69,7 @@ const Navbar = () => {
             </div>
           )}
         </div>
+
       </div>
     </div>
   );

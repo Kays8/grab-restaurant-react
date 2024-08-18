@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import { RouterProvider } from "react-router-dom";
-import Navbar from "./components/Navbar.jsx";
 import router from "./routers/Router.jsx";
 import { AuthProvider } from "./context/AuthContext.jsx";
 

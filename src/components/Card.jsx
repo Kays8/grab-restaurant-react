@@ -32,6 +32,7 @@ const Card = ({ id, name, type, imageUrl }) => {
             }).then(() => {
               window.location.reload();
             });
+        
           }
         } catch (err) {
           console.log(err);
@@ -50,10 +51,10 @@ const Card = ({ id, name, type, imageUrl }) => {
           <h2 className="card-title">{name}</h2>
           <p>{type}</p>
           <div className="card-actions justify-end">
-            <button className="btn  btn-error" onClick={() => handleDelete(id)}>
+            <button className="btn text-white btn-error" onClick={() => handleDelete(id)}>
               Delete
             </button>
-            <a href={`/Edit/${id}`} className="btn btn-info">
+            <a href={`/Edit/${id}`} className="btn btn-outline ">
               EDIT
             </a>
           </div>

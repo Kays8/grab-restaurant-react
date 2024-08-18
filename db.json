@@ -13,18 +13,6 @@
       "img": "https://food-cms.grab.com/compressed_webp/merchants/3-CZKXBGCZFCAWBE/hero/e1a42532-56f8-4f32-8c56-f1839834649d__store_cover__2024__03__22__01__55__24.webp"
     },
     {
-      "id": "3",
-      "title": "Shiba Hokkaido Milk Tea - อรุณอมรินทร์ 53",
-      "type": "ชาไข่มุก",
-      "img": "https://food-cms.grab.com/compressed_webp/merchants/3-C4CWEYXHJZC3CX/hero/0dc428884ad3418187b01f55cd1d9dad_1685325687481017392.webp"
-    },
-    {
-      "id": "4",
-      "title": "NONTELLA ช็อกโกแลตเฮเซลนัท - บรรทัดทอง",
-      "type": "ชา,กาแฟ",
-      "img": "https://food-cms.grab.com/compressed_webp/merchants/3-C4LDR6VEC3JABA/hero/f2149afe-efb8-48d2-9ca7-56a8ca06e911__store_cover__2023__10__18__21__33__47.webp"
-    },
-    {
       "id": "5",
       "title": "SOrder ชากับเธอ Chagubter - เตาปูน",
       "type": "ชา,กาแฟ",
@@ -77,6 +65,12 @@
       "title": "New! CHA JAAA",
       "type": "ชาไข่มุก",
       "img": "https://fw.lnwfile.com/54dx9v.webp"
+    },
+    {
+      "id": "6c07",
+      "title": "1",
+      "type": "1",
+      "img": "1"
     }
   ]
 }

@@ -2,7 +2,7 @@ import React from "react";
 
 const LoginButton = () => {
   return (
-    <a href="/login" className="btn btn-outline btn-warning">
+    <a href="/login" className="btn btn-outline btn-info">
       Login
     </a>
   );
