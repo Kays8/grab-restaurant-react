@@ -1,26 +1,23 @@
 import { useEffect, useState } from "react";
 import React from "react";
 import { useParams } from "react-router-dom";
+import RestaurantService from "../services/restaurant.service";
+import Swal from "sweetalert2";
 
 const Edit = () => {
   const { id } = useParams();
   const [restaurants, setRestaurants] = useState({
-    title: "",
+    name: "",
     type: "",
-    img: "",
+    imageUrl: "",
   });
 
   useEffect(() => {
-    fetch("http://localhost:3000/restaurants/" + id)
-      .then((res) => {
-        return res.json();
-      })
-      .then((response) => {
-        setRestaurants(response);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
+   RestaurantService.getRestaurantById(id).then((response)=>{
+    if(response.status === 200){
+      setRestaurants(response.data);
+    }
+   })
   }, [id]);
 
   const handleChange = (e) => {
@@ -28,17 +25,26 @@ const Edit = () => {
     setRestaurants({ ...restaurants, [name]: value });
   };
 
-  const handSubmit = async () => {
-    try {
-      const response = await fetch("http://localhost:3000/restaurants/" + id, {
-        method: "PUT",
-        body: JSON.stringify(restaurants),
-      });
-      if (response.ok) {
-        alert("GG JA");
+  const handSubmit = async (e) => {
+    e.preventDefault();
+    try{
+      const response = await RestaurantService.editRestaurant(id, restaurants);
+      if (response === 200) {
+        Swal.fire({
+          title: "Restaurant update",
+          text: response.data.message,
+          icon: "success",
+          
+        })
+         navigate("/");
       }
-    } catch (err) {
-      console.log(err);
+      
+    } catch(error){
+      Swal.fire({
+        title: "Restaurant Update",
+        text: error?.response?.data?.message || error.message ,
+        icon: "error",
+      });
     }
   };
 
@@ -56,8 +62,8 @@ const Edit = () => {
               type="text"
               placeholder="Name"
               id="title"
-              name="title"
-              value={restaurants.title}
+              name="name"
+              value={restaurants.name}
               onChange={handleChange}
             />
           </div>
@@ -85,9 +91,9 @@ const Edit = () => {
               className="input input-bordered w-full"
               type="text"
               placeholder="imageUrl"
-              id="img"
-              name="img"
-              value={restaurants.img}
+              id="imageUrl"
+              name="imageUrl"
+              value={restaurants.imageUrl}
               onChange={handleChange}
             />
           </div>

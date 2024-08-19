@@ -1,5 +1,7 @@
 import { useState } from "react";
 import React from "react";
+import RestaurantService from "../services/restaurant.service";
+import Swal from "sweetalert2";
 
 const Add = () => {
   const [restaurants, setRestaurants] = useState({
@@ -15,20 +17,25 @@ const Add = () => {
 
   const handSubmit = async () => {
     try {
-      const response = await fetch("http://localhost:3000/restaurants", {
-        method: "POST",
-        body: JSON.stringify(restaurants),
-      });
-      if (response.ok) {
-        alert("GG");
-        setRestaurants({
-          title: "",
-          type: "",
-          img: "",
+      const response = await RestaurantService.insertRestaurant(restaurants);
+      if (response.status === 200 ) {
+        Swal.fire({
+          title: "Add Restaurant!",
+          text:"Restaurant has been added successfully.",
+          icon: "success",
         });
+        setRestaurants({
+            name: "",
+            type: "",
+            imageUrl: "",
+          });
       }
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      Swal.fire({
+        title: "Add Restaurant",
+        text: error?.response?.data?.message || error.message,
+        icon: "error",
+      });
     }
   };
 
@@ -48,8 +55,8 @@ const Add = () => {
               className="input input-bordered w-full"
               type="text"
               placeholder="Name"
-              name="title"
-              value={restaurants.title}
+              name="name"
+              value={restaurants.name}
               onChange={handleChange}
             />
           </div>
@@ -82,15 +89,19 @@ const Add = () => {
               className="input input-bordered w-full"
               type="text"
               placeholder="imageUrl"
-              name="img"
-              value={restaurants.img}
+              name="imageUrl"
+              value={restaurants.imageUrl}
               onChange={handleChange}
             />
           </div>
 
           {/* Submit Button */}
           <div className="mb-6 text-center">
-            <button className="btn btn-primary" type="submit" onClick={handSubmit}>
+            <button
+              className="btn btn-primary"
+              type="submit"
+              onClick={handSubmit}
+            >
               ส่งข้อมูล
             </button>
           </div>
