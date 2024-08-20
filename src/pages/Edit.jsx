@@ -3,6 +3,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import RestaurantService from "../services/restaurant.service";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const Edit = () => {
   const { id } = useParams();
@@ -12,12 +13,14 @@ const Edit = () => {
     imageUrl: "",
   });
 
+  const navigate = useNavigate();
+
   useEffect(() => {
-   RestaurantService.getRestaurantById(id).then((response)=>{
-    if(response.status === 200){
-      setRestaurants(response.data);
-    }
-   })
+    RestaurantService.getRestaurantById(id).then((response) => {
+      if (response.status === 200) {
+        setRestaurants(response.data);
+      }
+    });
   }, [id]);
 
   const handleChange = (e) => {
@@ -27,22 +30,20 @@ const Edit = () => {
 
   const handSubmit = async (e) => {
     e.preventDefault();
-    try{
+    try {
       const response = await RestaurantService.editRestaurant(id, restaurants);
-      if (response === 200) {
+      if (response.status === 200) {
         Swal.fire({
           title: "Restaurant update",
           text: response.data.message,
           icon: "success",
-          
-        })
-         navigate("/");
+        });
+        navigate("/");
       }
-      
-    } catch(error){
+    } catch (error) {
       Swal.fire({
         title: "Restaurant Update",
-        text: error?.response?.data?.message || error.message ,
+        text: error?.response?.data?.message || error.message,
         icon: "error",
       });
     }

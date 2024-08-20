@@ -2,6 +2,7 @@ import { useState } from "react";
 import React from "react";
 import RestaurantService from "../services/restaurant.service";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const Add = () => {
   const [restaurants, setRestaurants] = useState({
@@ -10,25 +11,29 @@ const Add = () => {
     img: "",
   });
 
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setRestaurants({ ...restaurants, [name]: value });
   };
 
-  const handSubmit = async () => {
+  const handSubmit = async (e) => {
+    e.preventDefault();
     try {
       const response = await RestaurantService.insertRestaurant(restaurants);
-      if (response.status === 200 ) {
+      if (response.status === 200) {
         Swal.fire({
           title: "Add Restaurant!",
-          text:"Restaurant has been added successfully.",
+          text: "Restaurant has been added successfully.",
           icon: "success",
         });
         setRestaurants({
-            name: "",
-            type: "",
-            imageUrl: "",
-          });
+          name: "",
+          type: "",
+          imageUrl: "",
+        });
+        navigate("/");
       }
     } catch (error) {
       Swal.fire({
