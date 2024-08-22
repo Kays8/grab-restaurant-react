@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }) => {
   //Func ทั้งคู่ login - logout
   const login = (user) => setUser(user);
   const logout = () => {
-    AuthService.logout;
+    AuthService.logout();
     setUser(null);
   };
 
@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
     const temp = localStorage.getItem("user");
     const savedUser = JSON.parse(temp);
     return savedUser || null;
-  };
+  }
 
   useEffect(() => {
     const temp = JSON.stringify(user);

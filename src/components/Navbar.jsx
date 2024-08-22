@@ -3,39 +3,73 @@ import LoginButton from "./LoginButton";
 import RegisterButton from "./RegisterButton";
 import UserProfile from "./UserProfile";
 import { useAuthContext } from "../context/AuthContext";
-import {HomeIcon, PlusIcon, FoodIcon} from './Icon';
-
+import { HomeIcon, PlusIcon, FoodIcon } from "./Icon";
 
 const Navbar = () => {
   // ดึงข้อมูล user จาก AuthContext
   const { user } = useAuthContext();
+
+  const menus = {
+    ROLES_ADMIN: [
+      { name: "Add Restaurant", link: "/add" },
+      { name: "Home", link: "/" },
+    ],
+    ROLES_USER: [{ name: "Home", link: "/" }],
+    ROLES_MODERATOR: [
+      { name: "Add Restaurant", link: "/add" },
+      { name: "Home", link: "/" },
+    ],
+  };
 
   return (
     <div>
       <div className="navbar bg-base-100 px-16 p-4 bg-[#f8f5f5] drop-shadow-lg">
         <div className="navbar-start">
           <a href="/">
-          <div className="text-black ">
-          <FoodIcon className="text-4xl" />
-          </div>
-            
+            <div className="text-black ">
+              <FoodIcon className="text-4xl" />
+            </div>
           </a>
         </div>
 
-        <div className="mr-10">
+        {user &&
+          menus[user.roles[0]].map((menuItem) => (
+            <div className="mr-10">
+              <div className="mr-10" key={menuItem.name}>
+                <a
+                  href={menuItem.link}
+                  className="flex items-center space-x-1 text-black"
+                >
+                  <HomeIcon />
+                  <span>Home</span>
+                </a>
+              </div>
+
+              <div>
+                <a
+                  href={menuItem.link}
+                  className="flex items-center space-x-1 text-black"
+                >
+                  <PlusIcon />
+                  <span>Add</span>
+                </a>
+              </div>
+            </div>
+          ))}
+
+        {/* <div className="mr-10">
           <a href="/" className="flex items-center space-x-1 text-black">
-           <HomeIcon/>
+            <HomeIcon />
             <span>Home</span>
           </a>
         </div>
 
-        <div >
+        <div>
           <a href="/Add" className="flex items-center space-x-1 text-black">
-            <PlusIcon/>
+            <PlusIcon />
             <span>Add</span>
           </a>
-        </div>
-        
+        </div> */}
 
         <div className="navbar-end flex items-center space-x-4 text-black">
           {user && (
@@ -59,9 +93,8 @@ const Navbar = () => {
 
           {user ? (
             <div className="text-black">
- <UserProfile />
+              <UserProfile />
             </div>
-           
           ) : (
             <div className="space-x-2">
               <LoginButton />
@@ -69,7 +102,6 @@ const Navbar = () => {
             </div>
           )}
         </div>
-
       </div>
     </div>
   );

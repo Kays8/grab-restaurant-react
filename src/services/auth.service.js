@@ -18,9 +18,15 @@ const login = async (username, password) => {
   return response;
 };
 
+const logout = () => {
+  localStorage.removeItem("accessToken");
+  localStorage.removeItem("user");
+};
+
 const AuthService = {
   register,
   login,
+  logout,
 };
 
 export default AuthService;

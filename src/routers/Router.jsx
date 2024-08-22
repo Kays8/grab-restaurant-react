@@ -1,10 +1,21 @@
 import { createBrowserRouter } from "react-router-dom";
-import Home from "../pages/Home.jsx";
-import Add from "../pages/Add.jsx";
-import Edit from "../pages/Edit.jsx";
-import Login from "../pages/Login.jsx";
-import Register from "../pages/Register.jsx";
+//import Home from "../pages/Home.jsx";
+import { lazy } from "react";
+const Home = lazy(() => import("../pages/Home.jsx"));
+//import Add from "../pages/Add.jsx";
+const Add = lazy(() => import("../pages/Home.jsx"));
+//import Edit from "../pages/Edit.jsx";
+const Edit = lazy(() => import("../pages/Home.jsx"));
+//import Login from "../pages/Login.jsx";
+const Login = lazy(() => import("../pages/Home.jsx"));
+//import Register from "../pages/Register.jsx";
+const Register = lazy(() => import("../pages/Home.jsx"));
+//import NotAllowed from "../pages/NotAllowed.jsx";
+const NotAllowed = lazy(() => import("../pages/Home.jsx"));
 import Layout from "../components/Layout.jsx";
+import ModOrAdmin from "../pages/ModOrAdminPage.jsx";
+import UserProfilePage from "../pages/UserProfilePage.jsx";
+import UserPage from "../pages/UserPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -22,7 +33,11 @@ const router = createBrowserRouter([
       ,
       {
         path: "/Edit/:id",
-        element: <Edit />,
+        element: (
+          <ModOrAdmin>
+            <Edit />
+          </ModOrAdmin>
+        ),
       },
       {
         path: "/login",
@@ -31,6 +46,18 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+      {
+        path: "/notallowed",
+        element: <NotAllowed />,
+      },
+      {
+        path: "/userprofile",
+        element: (
+          <UserPage>
+            <UserProfilePage />
+          </UserPage>
+        ),
       },
     ],
   },

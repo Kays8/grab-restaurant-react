@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuthContext } from "../context/AuthContext";
-import { UserIcon } from "./Icon"
+import { UserIcon } from "./Icon";
 
 const UserProfile = () => {
   const { logout } = useAuthContext();
@@ -17,7 +17,7 @@ const UserProfile = () => {
         className="btn btn-ghost btn-circle avatar"
       >
         <div className="w-10 rounded-full flex items-center justify-center">
-           <UserIcon className="w-full h-full"/>
+          <UserIcon className="w-full h-full" />
         </div>
       </div>
       <ul
@@ -25,7 +25,7 @@ const UserProfile = () => {
         className="menu menu-sm dropdown-content rounded-box z-[1] mt-3 w-52 p-2 shadow"
       >
         <li>
-          <a className="justify-between">
+          <a className="justify-between" href="/userprofile">
             Profile
             <span className="badge badge-neutral">New</span>
           </a>
