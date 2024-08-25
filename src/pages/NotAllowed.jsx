@@ -36,7 +36,8 @@ const NotAllowed = () => {
           <img src={notwarning} alt="" />
         </figure>
         <div className="card-body items-center text-center">
-          <h2 className="card-title">You are not allowed to grant access!</h2>
+          <h2 className="card-title">Page Not Allowed!</h2>
+          <p>You are not allowed to access this page</p>
           <span className="countdown font-mono text-6xl">
             <span style={{ "--value": counter }}></span>
           </span>

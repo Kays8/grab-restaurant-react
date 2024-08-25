@@ -33,7 +33,6 @@ const Add = () => {
           type: "",
           imageUrl: "",
         });
-        navigate("/");
       }
     } catch (error) {
       Swal.fire({

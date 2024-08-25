@@ -11,14 +11,41 @@ const Navbar = () => {
 
   const menus = {
     ROLES_ADMIN: [
-      { name: "Add Restaurant", link: "/add" },
-      { name: "Home", link: "/" },
+      { name: "HOME", link: "/" },
+      { name: "ADD", link: "/add" },
     ],
-    ROLES_USER: [{ name: "Home", link: "/" }],
     ROLES_MODERATOR: [
-      { name: "Add Restaurant", link: "/add" },
-      { name: "Home", link: "/" },
+      { name: "HOME", link: "/" },
+      { name: "ADD", link: "/add" },
     ],
+    ROLES_USER: [{ name: "HOME", link: "/" }],
+  };
+
+  const renderMenuItem = (menuItem) => {
+    switch (menuItem.name) {
+      case "HOME":
+        return (
+          <a
+            href={menuItem.link}
+            className="flex items-center space-x-1 text-black"
+          >
+            <HomeIcon />
+            <span>Home</span>
+          </a>
+        );
+      case "ADD":
+        return (
+          <a
+            href={menuItem.link}
+            className="flex items-center space-x-1 text-black"
+          >
+            <PlusIcon />
+            <span>Add</span>
+          </a>
+        );
+      default:
+        return null;
+    }
   };
 
   return (
@@ -26,50 +53,20 @@ const Navbar = () => {
       <div className="navbar bg-base-100 px-16 p-4 bg-[#f8f5f5] drop-shadow-lg">
         <div className="navbar-start">
           <a href="/">
-            <div className="text-black ">
+            <div className="text-black">
               <FoodIcon className="text-4xl" />
             </div>
           </a>
         </div>
 
-        {user &&
-          menus[user.roles[0]].map((menuItem) => (
-            <div className="mr-10">
-              <div className="mr-10" key={menuItem.name}>
-                <a
-                  href={menuItem.link}
-                  className="flex items-center space-x-1 text-black"
-                >
-                  <HomeIcon />
-                  <span>Home</span>
-                </a>
+        <div className="navbar-center flex items-center space-x-4">
+          {user &&
+            menus[user.roles[0]].map((menuItem) => (
+              <div key={menuItem.name} className="mr-10">
+                {renderMenuItem(menuItem)}
               </div>
-
-              <div>
-                <a
-                  href={menuItem.link}
-                  className="flex items-center space-x-1 text-black"
-                >
-                  <PlusIcon />
-                  <span>Add</span>
-                </a>
-              </div>
-            </div>
-          ))}
-
-        {/* <div className="mr-10">
-          <a href="/" className="flex items-center space-x-1 text-black">
-            <HomeIcon />
-            <span>Home</span>
-          </a>
+            ))}
         </div>
-
-        <div>
-          <a href="/Add" className="flex items-center space-x-1 text-black">
-            <PlusIcon />
-            <span>Add</span>
-          </a>
-        </div> */}
 
         <div className="navbar-end flex items-center space-x-4 text-black">
           {user && (
